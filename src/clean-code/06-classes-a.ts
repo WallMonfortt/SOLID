@@ -1,24 +1,65 @@
-(()=>{
+(() => {
 
-    type Gender = 'M' | 'F';
+    // No aplicando el principio de responsabilidad única
+
+    type Gender = 'M'|'F';
 
     class Person {
-        // public name: string;
-        // public gender: Gender;
-        // public birthday: Date;
-
-        // constructor (name:string, gender:Gender, birthdate:Date){
-        //     this.name = name;
-        //     this.gender = gender;
-        //     this.birthday = birthdate;
-        // }
         constructor(
-            public name: string,
-            public gender : Gender,
-            public birthday: Date
+            public name: string, 
+            public gender: Gender, 
+            public birthdate: Date
         ){}
-
     }
-    const newPerson = new Person('John', 'M', new Date('1990-01-01'));
-    console.log(newPerson);
+
+
+    class User extends Person {
+        
+        public lastAccess: Date;
+
+        constructor(
+            public email: string,
+            public role: string,
+            name: string,
+            gender: Gender,
+            birthdate: Date,
+        ) {
+            super( name, gender, birthdate );
+            this.lastAccess = new Date();
+        }
+
+        checkCredentials() {
+            return true;
+        }
+    }
+
+
+    class UserSettings extends User {
+        constructor(
+            public workingDirectory: string,
+            public lastOpenFolder  : string,
+            email                  : string,
+            role                   : string,
+            name                   : string,
+            gender                 : Gender,
+            birthdate              : Date
+        ) {
+            super(email, role, name, gender, birthdate );
+        }
+    }
+
+
+    const userSettings = new UserSettings(
+        '/usr/home',
+        '/home',
+        'jose@google.com',
+        'Admin',
+        'Jose',
+        'M',
+        new Date('1985-10-21')
+    );
+
+    console.log({ userSettings });
+
+
 })();

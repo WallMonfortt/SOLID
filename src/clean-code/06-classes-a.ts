@@ -29,6 +29,7 @@
         }
 
         checkCredentials() {
+            console.log('Checking credentials...');
             return true;
         }
     }

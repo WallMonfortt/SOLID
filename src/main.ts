@@ -1,7 +1,7 @@
 import './style.css'
 // import './clean-code/04-homework'
 // import './clean-code/05-DRY
-import './clean-code/06-classes-b'
+import './clean-code/06-classes-c'
 
 const app = document.querySelector<HTMLDivElement>('#app')!
 
